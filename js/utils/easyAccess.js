@@ -73,3 +73,13 @@ function achievementEffect(layer, id) {
 function gridEffect(layer, id) {
 	return (gridRun(layer, 'getEffect', player[layer].grid[id], id))
 }
+
+function colorText(text, color, html="h2") {return `<${html} style="color:${color};text-shadow:${color} 0px 0px 10px;">${text}</${html}>`}
+
+function upgradeCount(layer) {return player[layer].upgrades.length}
+
+function adjacentUpgrade(u) {
+	let upg = u.split(",")
+	let adj = [[upg[0]-1, upg[1]].join(), [upg[0], upg[1]-1].join(), [+upg[0]+1, upg[1]].join(), [upg[0], +upg[1]+1].join()]
+	return hasUpgrade("p", adj[0]) || hasUpgrade("p", adj[1]) || hasUpgrade("p", adj[2]) || hasUpgrade("p", adj[3])
+}
